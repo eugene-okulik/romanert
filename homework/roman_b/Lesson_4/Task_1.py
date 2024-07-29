@@ -30,7 +30,7 @@ print(my_list)
 # удалите какой-нибудь элемент
 
 my_dictionary = my_dict['dict']
-my_dictionary['i am a tuple'] = 'Lie!'
+my_dictionary[('i am a tuple', )] = 'Tricky'
 my_dictionary.pop('color')
 print(my_dictionary)
 
