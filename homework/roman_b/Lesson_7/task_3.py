@@ -1,10 +1,7 @@
 output = [
     'operation result: 42',
-
     'operation result: 514',
-
     'program work result: 9',
-    
     'result: 2'
 ]
 
