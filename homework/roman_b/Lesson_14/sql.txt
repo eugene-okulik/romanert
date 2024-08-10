@@ -1,0 +1,72 @@
+INSERT INTO `groups` (title, start_date, end_date) VALUES ('The Champions', 'aug 2024', 'sept 2024')
+
+SELECT * FROM `groups` WHERE title = 'The Champions'
+
+INSERT INTO students (name, second_name, group_id) VALUES ('Jan', 'Cousteau', 1764)
+
+SELECT id FROM students WHERE name = 'Jan' and second_name = 'Cousteau'
+
+
+
+INSERT INTO books (title, taken_by_student_id) VALUES ('Indistractable', 1879)
+
+INSERT INTO books (title, taken_by_student_id) VALUES ('The Intelligent Investor', 1879)
+
+INSERT INTO books (title, taken_by_student_id) VALUES ('The Great Gatsby', 1879)
+
+
+
+INSERT INTO subjets (title) VALUES ('The Science of Superheroes')
+
+INSERT INTO subjets (title) VALUES ('Zombies on TV')
+
+SELECT id FROM subjets WHERE title IN ('The Science of Superheroes', 'Zombies on TV')
+
+
+
+INSERT INTO lessons (title, subject_id) VALUES ('Monday', 2467)
+
+INSERT INTO lessons (title, subject_id) VALUES ('Wednesday', 2467)
+
+INSERT INTO lessons (title, subject_id) VALUES ('Tuesday', 2468)
+
+INSERT INTO lessons (title, subject_id) VALUES ('Thursday', 2468)
+
+SELECT id FROM lessons WHERE lessons.subject_id in (2467, 2468) AND lessons.title in ('Monday', 'Tuesday', 'Wednesday', 'Thursday')
+
+
+
+INSERT INTO marks (value, student_id, lesson_id) VALUES ('Great', '1879', 5250)
+
+INSERT INTO marks (value, student_id, lesson_id) VALUES ('Good', '1879', 5251)
+
+INSERT INTO marks (value, student_id, lesson_id) VALUES ('Excellent', '1879', 5252)
+
+INSERT INTO marks (value, student_id, lesson_id) VALUES ('Great+', '1879', 5253)
+
+
+
+SELECT * FROM students JOIN marks on students.id = marks.student_id WHERE student_id = 1879
+
+SELECT * FROM books JOIN students on books.taken_by_student_id = students.id WHERE taken_by_student_id = 1879
+
+
+SELECT
+g.title AS 'GROUP_NAME',
+s.id as 'STUDENT_ID',
+s.name as 'NAME',
+s.second_name as 'SECOND_NAME',
+b.title as 'BOOK_TITLE',
+sub.title as 'SUBJECT_TITLE',
+l.title as 'LESSON_TITLE',
+m.value as 'MARKS'
+FROM students s
+JOIN `groups` g ON s.group_id = g.id
+JOIN books b ON s.id = b.taken_by_student_id
+JOIN marks m ON s.id = m.student_id
+JOIN lessons l ON m.lesson_id = l.id
+JOIN subjets sub ON sub.id = l.subject_id
+WHERE s.id = 1879
+
+
+
