@@ -1,8 +1,4 @@
-INSERT INTO `groups` (title, start_date, end_date) VALUES ('The Champions', 'aug 2024', 'sept 2024')
-
-SELECT * FROM `groups` WHERE title = 'The Champions'
-
-INSERT INTO students (name, second_name, group_id) VALUES ('Jan', 'Cousteau', 1764)
+INSERT INTO students (name, second_name) VALUES ('Jan', 'Cousteau')
 
 SELECT id FROM students WHERE name = 'Jan' and second_name = 'Cousteau'
 
@@ -13,6 +9,14 @@ INSERT INTO books (title, taken_by_student_id) VALUES ('Indistractable', 1879)
 INSERT INTO books (title, taken_by_student_id) VALUES ('The Intelligent Investor', 1879)
 
 INSERT INTO books (title, taken_by_student_id) VALUES ('The Great Gatsby', 1879)
+
+
+
+INSERT INTO `groups` (title, start_date, end_date) VALUES ('The Champions', 'aug 2024', 'sept 2024')
+
+SELECT * FROM `groups` WHERE title = 'The Champions'
+
+UPDATE students SET group_id = 1764 WHERE name = 'Jan' and second_name = 'Cousteau'
 
 
 
@@ -51,6 +55,7 @@ SELECT * FROM students JOIN marks on students.id = marks.student_id WHERE studen
 SELECT * FROM books JOIN students on books.taken_by_student_id = students.id WHERE taken_by_student_id = 1879
 
 
+
 SELECT
 g.title AS 'GROUP_NAME',
 s.id as 'STUDENT_ID',
@@ -67,6 +72,3 @@ JOIN marks m ON s.id = m.student_id
 JOIN lessons l ON m.lesson_id = l.id
 JOIN subjets sub ON sub.id = l.subject_id
 WHERE s.id = 1879
-
-
-
