@@ -36,7 +36,7 @@ JOIN books b ON s.id = b.taken_by_student_id
 JOIN marks m ON s.id = m.student_id
 JOIN lessons l ON m.lesson_id = l.id
 JOIN subjets sub ON sub.id = l.subject_id
-WHERE s.name = %s AND s.second_name = %s AND g.title = %s AND b.title = %s 
+WHERE s.name = %s AND s.second_name = %s AND g.title = %s AND b.title = %s
 AND sub.title = %s AND l.title = %s AND  m.value = %s
 '''
 
