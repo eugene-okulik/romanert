@@ -1,11 +1,12 @@
 import mysql.connector as mysql
+from homework.roman_b.Lesson_15 import mysql_creds
 
 db = mysql.connect(
-    user='st-onl',
-    passwd='AVNS_tegPDkI5BlB2lW5eASC',
-    host='db-mysql-fra1-09136-do-user-7651996-0.b.db.ondigitalocean.com',
-    port=25060,
-    database='st-onl'
+    user=mysql_creds.user,
+    passwd=mysql_creds.passwd,
+    host=mysql_creds.host,
+    port=mysql_creds.port,
+    database=mysql_creds.database
 )
 
 cursor = db.cursor()
