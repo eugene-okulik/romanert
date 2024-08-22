@@ -12,12 +12,12 @@ def assert_date(date_string):
 def create_object():
     header = {"content-type": "application/json"}
     body = {
-       "name": "Apple MacBook Pro 16",
-       "data": {
-          "year": 2019,
-          "price": 1849.99,
-          "CPU model": "Intel Core i9",
-          "Hard disk size": "1 TB"
+        "name": "Apple MacBook Pro 16",
+        "data": {
+            "year": 2019,
+            "price": 1849.99,
+            "CPU model": "Intel Core i9",
+            "Hard disk size": "1 TB"
         }
     }
 
@@ -31,14 +31,14 @@ def create_object():
 def modify_object_put(object_id):
     header = {"content-type": "application/json"}
     body = {
-       "name": "Apple MacBook Pro 16",
-       "data": {
-          "year": 2019,
-          "price": 2049.99,
-          "CPU model": "Intel Core i9",
-          "Hard disk size": "1 TB",
-          "color": "silver"
-       }
+        "name": "Apple MacBook Pro 16",
+        "data": {
+            "year": 2019,
+            "price": 2049.99,
+            "CPU model": "Intel Core i9",
+            "Hard disk size": "1 TB",
+            "color": "silver"
+        }
     }
 
     response = requests.put(f"https://api.restful-api.dev/objects/{object_id}", json=body, headers=header)
@@ -49,7 +49,7 @@ def modify_object_put(object_id):
 def modify_object_patch(object_id):
     header = {"content-type": "application/json"}
     body = {
-       "name": "Apple MacBook Pro 16 (Updated Name)"
+        "name": "Apple MacBook Pro 16 (Updated Name)"
     }
     response = requests.patch(f"https://api.restful-api.dev/objects/{object_id}", json=body, headers=header)
     assert response.status_code == 200, "Status code not 200"
