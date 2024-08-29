@@ -80,7 +80,7 @@ def test_modify_object_put(new_object):
                 "color": "silver"
             }
         }
-    with allure.step(f'Run put request'):
+    with allure.step('Run put request'):
         response = requests.put(f"https://api.restful-api.dev/objects/{new_object}", json=body, headers=header)
     assert response.status_code == 200
     assert response.json()['name'] == "Updated Apple MacBook Pro 16"
