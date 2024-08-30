@@ -1,5 +1,6 @@
 import requests
 import pytest
+import allure
 from datetime import datetime
 
 
@@ -42,6 +43,9 @@ def new_object():
     requests.delete(f"https://api.restful-api.dev/objects/{new_id}")
 
 
+@allure.feature('Posts')
+@allure.story('Create new object')
+@allure.label('regression')
 @pytest.mark.parametrize('bodies', [
     {"name": "Apple MacBook Pro 16",
      "data": {"year": 2019, "price": 1849.99, "CPU model": "Intel Core i9", "Hard disk size": "1 TB"}},
@@ -53,30 +57,38 @@ def new_object():
 def test_create_object(bodies):
     header = {"content-type": "application/json"}
     body = bodies
-
-    response = requests.post("https://api.restful-api.dev/objects", json=body, headers=header).json()
+    with allure.step('Send a POST request'):
+        response = requests.post("https://api.restful-api.dev/objects", json=body, headers=header).json()
     date = response['createdAt']
     assert_date(date)
 
 
+@allure.feature('Posts')
+@allure.story('Modify object with put method')
+@allure.label('regression')
 @pytest.mark.medium
 def test_modify_object_put(new_object):
-    header = {"content-type": "application/json"}
-    body = {
-        "name": "Updated Apple MacBook Pro 16",
-        "data": {
-            "year": 2020,
-            "price": 2049.99,
-            "CPU model": "Intel Core i9",
-            "Hard disk size": "1 TB",
-            "color": "silver"
+    with allure.step('Send data(body and header) for put request'):
+        header = {"content-type": "application/json"}
+        body = {
+            "name": "Updated Apple MacBook Pro 16",
+            "data": {
+                "year": 2020,
+                "price": 2049.99,
+                "CPU model": "Intel Core i9",
+                "Hard disk size": "1 TB",
+                "color": "silver"
+            }
         }
-    }
-    response = requests.put(f"https://api.restful-api.dev/objects/{new_object}", json=body, headers=header)
+    with allure.step('Run put request'):
+        response = requests.put(f"https://api.restful-api.dev/objects/{new_object}", json=body, headers=header)
     assert response.status_code == 200
     assert response.json()['name'] == "Updated Apple MacBook Pro 16"
 
 
+@allure.feature('Posts')
+@allure.story('Modify object with patch method')
+@allure.label('regression')
 @pytest.mark.critical
 def test_modify_object_patch(new_object):
     header = {"content-type": "application/json"}
@@ -86,6 +98,9 @@ def test_modify_object_patch(new_object):
     assert response.json()['name'] == 'Apple MacBook Pro 16 (Updated Name)'
 
 
+@allure.feature('Posts')
+@allure.story('Delete object')
+@allure.label('regression')
 def test_delete_obj(new_object):
     response = requests.delete(f"https://api.restful-api.dev/objects/{new_object}")
     assert response.status_code == 200
