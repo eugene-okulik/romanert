@@ -37,4 +37,3 @@ def test_modify_object_patch(update_post_patch_endpoint, create_post_endpoint):
 
 def test_delete_object(delete_post_endpoint, create_post_endpoint):
     delete_post_endpoint.delete_post(post_id=create_post_endpoint.post_id)
-
