@@ -28,13 +28,13 @@ def delete_object_endpoint():
 @pytest.fixture()
 def new_object_id(create_object_endpoint):
     body = {
-       "name": "Apple MacBook Pro 14",
-       "data": {
-          "year": 2019,
-          "price": 1849.99,
-          "CPU model": "Intel Core i9",
-          "Hard disk size": "1 TB"
-       }
+        "name": "Apple MacBook Pro 14",
+        "data": {
+           "year": 2019,
+           "price": 1849.99,
+           "CPU model": "Intel Core i9",
+           "Hard disk size": "1 TB"
+        }
     }
     create_object_endpoint.create_new_object(body)
     yield create_object_endpoint.object_id
