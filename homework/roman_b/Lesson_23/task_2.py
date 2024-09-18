@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -22,7 +23,9 @@ def test_part_two(driver):
         'last_name_value': 'Clooney',
         'email_value': 'gclooney1000@gmail.com',
         'phone_value': '3103562398',
-        'subject_value': 'Very important message',
+        'month_value': '2',
+        'year_value': '1990',
+        'subject_value': 'Computer science',
         'address_value': 'My current address'
     }
 
@@ -49,17 +52,18 @@ def test_part_two(driver):
 
     month_dropdown = driver.find_element(By.CLASS_NAME, 'react-datepicker__month-select')
     select_month = Select(month_dropdown)
-    select_month.select_by_value('2')
+    select_month.select_by_value(input_data['month_value'])
 
     year_dropdown = driver.find_element(By.CLASS_NAME, 'react-datepicker__year-select')
     select_year = Select(year_dropdown)
-    select_year.select_by_value('1990')
+    select_year.select_by_value(input_data['year_value'])
 
     day_dropdown = driver.find_element(By.CLASS_NAME, 'react-datepicker__day--009')
     day_dropdown.click()
 
     subjects = driver.find_element(By.ID, 'subjectsInput')
     subjects.send_keys(input_data['subject_value'])
+    subjects.send_keys(Keys.ENTER)
 
     hobbies = driver.find_element(By.XPATH, '//*[@id="hobbiesWrapper"]/div[2]/div[2]/label')
     hobbies.click()

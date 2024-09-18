@@ -17,9 +17,9 @@ def test_part_one(driver):
 
     driver.get('https://www.qa-practice.com/elements/input/simple')
 
-    input_field = driver.find_element(By.CSS_SELECTOR, '.textinput.textInput.form-control')
+    input_field = driver.find_element(By.ID, 'id_text_string')
     input_field.send_keys(input_data)
     input_field.submit()
-    input_result = driver.find_element(By.CSS_SELECTOR, '.result-text')
+    input_result = driver.find_element(By.ID, 'result-text')
 
     assert input_result.text == input_data
