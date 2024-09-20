@@ -3,7 +3,9 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.alert import Alert
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
 import pytest
 
 
@@ -23,7 +25,8 @@ def test_one(driver):
 
     product_item = driver.find_element(By.XPATH, '//*[@href="prod.html?idp_=1" and @class="hrefch"]')
     product_name = product_item.text
-    driver.execute_script("window.open(arguments[0].href, '_blank');", product_item)
+
+    ActionChains(driver).key_down(Keys.COMMAND).click(product_item).key_up(Keys.COMMAND).perform()
 
     tabs = driver.window_handles
     driver.switch_to.window(tabs[1])
